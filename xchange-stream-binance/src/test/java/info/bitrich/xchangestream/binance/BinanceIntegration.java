@@ -37,13 +37,10 @@ public class BinanceIntegration {
         .addTicker(CurrencyPair.BTC_USD)
         .addTicker(CurrencyPair.DASH_BTC)
         .addOrderbook(CurrencyPair.ETH_BTC);
-    ExchangeSpecification spec =
-        StreamingExchangeFactory.INSTANCE
-            .createExchange(BinanceStreamingExchange.class)
-            .getDefaultExchangeSpecification();
+    ExchangeSpecification spec =StreamingExchangeFactory.INSTANCE.createExchange(BinanceStreamingExchange.class).getDefaultExchangeSpecification();
     spec.setExchangeSpecificParametersItem(USE_HIGHER_UPDATE_FREQUENCY, true);
-    BinanceStreamingExchange exchange =
-        (BinanceStreamingExchange) StreamingExchangeFactory.INSTANCE.createExchange(spec);
+
+    BinanceStreamingExchange exchange = (BinanceStreamingExchange) StreamingExchangeFactory.INSTANCE.createExchange(spec);
     String buildSubscriptionStreams = exchange.buildSubscriptionStreams(builder.build());
     Assert.assertEquals(
         "btcusd@ticker/dashbtc@ticker/ethbtc@depth@100ms", buildSubscriptionStreams);
