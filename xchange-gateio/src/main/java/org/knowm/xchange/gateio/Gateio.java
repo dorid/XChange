@@ -7,6 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import org.knowm.xchange.gateio.dto.account.GateioKlines;
 import org.knowm.xchange.gateio.dto.marketdata.GateioCurrencyPairs;
 import org.knowm.xchange.gateio.dto.marketdata.GateioDepth;
 import org.knowm.xchange.gateio.dto.marketdata.GateioMarketInfoWrapper;
@@ -58,4 +60,8 @@ public interface Gateio {
       @PathParam("currency") String currency,
       @PathParam("tradeId") String tradeId)
       throws IOException;
+
+  @GET
+  @Path("candlestick2/SHIB_USDT?group_sec=300&range_hour=1")
+  GateioKlines getKline();
 }
