@@ -124,4 +124,5 @@ public interface MarketDataService extends BaseService {
   default Trades getTrades(Params params) throws IOException {
     throw new NotYetImplementedForExchangeException("getTrades");
   }
+
 }

@@ -13,6 +13,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.gateio.dto.GateioOrderType;
+import org.knowm.xchange.gateio.dto.account.GateioKlines;
 import org.knowm.xchange.gateio.dto.marketdata.GateioMarketInfoWrapper.GateioMarketInfo;
 
 public class GateioMarketDataJsonTest {
@@ -104,5 +105,20 @@ public class GateioMarketDataJsonTest {
     assertThat(trade.getAmount()).isEqualTo(new BigDecimal("0.0129"));
     assertThat(trade.getTradeId()).isEqualTo("5600118");
     Assertions.assertThat(trade.getType()).isEqualTo(GateioOrderType.SELL);
+  }
+
+  @Test
+  public void testKline() throws IOException {
+
+    // Read in the JSON from the example resources
+    InputStream is =
+            GateioMarketDataJsonTest.class.getResourceAsStream(
+                    "/org/knowm/xchange/gateio/dto/marketdata/example-klines-data.json");
+
+    // Use Jackson to parse it
+    ObjectMapper mapper = new ObjectMapper();
+    GateioKlines tradeHistory = mapper.readValue(is, GateioKlines.class);
+
+    System.out.println(tradeHistory);
   }
 }

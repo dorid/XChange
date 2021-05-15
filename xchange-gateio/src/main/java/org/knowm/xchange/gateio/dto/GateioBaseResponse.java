@@ -1,11 +1,15 @@
 package org.knowm.xchange.gateio.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class GateioBaseResponse {
 
-  private final boolean result;
-  private final String message;
+  private boolean result;
+  private String message;
 
   protected GateioBaseResponse(
       @JsonProperty("result") final boolean result, @JsonProperty("msg") final String message) {
@@ -22,11 +26,5 @@ public class GateioBaseResponse {
   public String getMessage() {
 
     return message;
-  }
-
-  @Override
-  public String toString() {
-
-    return "GateioBaseResponse [result=" + result + ", message=" + message + "]";
   }
 }

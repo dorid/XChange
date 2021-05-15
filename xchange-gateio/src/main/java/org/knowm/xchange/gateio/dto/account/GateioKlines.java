@@ -1,36 +1,29 @@
 package org.knowm.xchange.gateio.dto.account;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.knowm.xchange.gateio.dto.GateioBaseResponse;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+@Data
+@NoArgsConstructor
 public class GateioKlines extends GateioBaseResponse {
 
-  private final List<List<BigDecimal>> data;
+  private  List<GateioKline> data;
+  private  String elapsed;
 
   /**
    * Constructor
-   *
    */
-  public GateioKlines(
-      @JsonProperty("data") List<List<BigDecimal>> data,
-      @JsonProperty("result") boolean result,
-      @JsonProperty("message") final String message) {
+  private GateioKlines(
+          @JsonProperty("data") List<GateioKline> data,
+          @JsonProperty("result") boolean result,
+          @JsonProperty("elapsed") String elapsed) {
 
-    super(result, message);
-
-    this.data = data == null ? new ArrayList<>() : data;
-  }
-
-
-  @Override
-  public String toString() {
-
-    return "BTERAccountInfoReturn [data=" + data + "]";
+    super(result, null);
+    this.data = data;
+    this.elapsed = elapsed;
   }
 }
