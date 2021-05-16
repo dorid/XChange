@@ -11,6 +11,7 @@ import org.knowm.xchange.gateio.dto.marketdata.GateioMarketInfoWrapper;
 import org.knowm.xchange.gateio.dto.marketdata.GateioTicker;
 import org.knowm.xchange.gateio.dto.marketdata.GateioTradeHistory;
 
+import javax.ws.rs.PathParam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,22 +20,22 @@ import java.util.Map;
 
 public class GateioKlineDataServiceRaw extends GateioBaseService {
 
-  /**
-   * Constructor
-   *
-   * @param exchange
-   */
-  public GateioKlineDataServiceRaw(Exchange exchange) {
+    /**
+     * Constructor
+     *
+     * @param exchange
+     */
+    public GateioKlineDataServiceRaw(Exchange exchange) {
 
-    super(exchange);
-  }
+        super(exchange);
+    }
 
 
-  public GateioKlines getKline() throws IOException {
+    public GateioKlines getKline(CurrencyPair currencyPair, Integer groupSec, Integer rangHour) throws IOException {
 
-    GateioKlines gateioTicker = bter.getKline();
+        GateioKlines gateioTicker = bter.getKline(currencyPair.base.getCurrencyCode(), currencyPair.counter.getCurrencyCode(), groupSec, rangHour);
 
-    return handleResponse(gateioTicker);
-  }
+        return handleResponse(gateioTicker);
+    }
 
 }

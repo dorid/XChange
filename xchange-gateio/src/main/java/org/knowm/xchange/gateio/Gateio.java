@@ -62,6 +62,6 @@ public interface Gateio {
       throws IOException;
 
   @GET
-  @Path("candlestick2/SHIB_USDT?group_sec=300&range_hour=1")
-  GateioKlines getKline();
+  @Path("candlestick2/{ident}_{currency}?group_sec={groupSec}&range_hour={rangHour}")
+  GateioKlines getKline(@PathParam("ident") String tradeableIdentifier, @PathParam("currency") String currency, @PathParam("groupSec") Integer groupSec, @PathParam("rangHour") Integer rangHour);
 }
